@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCanteen - Dashboard Desktop</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f3f4f6;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      height: 100vh;
+    }
+    .sidebar {
+      background: #1f2937;
+      color: white;
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .nav-link {
+      padding: 12px 24px;
+      color: white;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: #374151;
+    }
+    .main {
+      padding: 32px;
+      overflow-y: auto;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .badge.green {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    .badge.red {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .badge.yellow {
+      background: #fef9c3;
+      color: #ca8a04;
+    }
+    .chart-placeholder {
+      background: repeating-linear-gradient(45deg, #e5e7eb, #e5e7eb 10px, #fff 10px, #fff 20px);
+      height: 200px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-style: italic;
+    }
+    .payment-methods li {
+      display: inline-block;
+      background: #f3f4f6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin: 6px;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    .payment-methods li:hover {
+      background: #dbeafe;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar">
+      <h2>📚 SmartCanteen</h2>
+      <a href="#" class="nav-link active" onclick="switchPage('student')">👨‍🎓 Siswa</a>
+      <a href="#" class="nav-link" onclick="switchPage('admin')">👨‍💼 Admin</a>
+      <a href="#" class="nav-link" onclick="switchPage('kitchen')">👨‍🍳 Dapur</a>
+      <a href="#" class="nav-link" onclick="switchPage('menu')">📋 Manajemen Menu</a>
+      <a href="#" class="nav-link" onclick="switchPage('analytics')">📊 Analitik</a>
+      <a href="#" class="nav-link" onclick="switchPage('payment')">💳 Pembayaran</a>
+    </nav>
+    <main class="main">
+      <section id="student" class="page active">
+        <h1>👨‍🎓 Dashboard Siswa</h1>
+        <div class="card">
+          <strong>Saldo E-Wallet:</strong> <span class="badge green">Rp 45.000</span>
+        </div>
+        <div class="card">
+          <h3>Aksi Cepat</h3>
+          <ul>
+            <li>🍽️ Pesan Sekarang</li>
+            <li>⏰ Pre-Order Besok</li>
+            <li>📱 Scan QR untuk Ambil Pesanan</li>
+            <li>👥 Pesan Kelompok (kelas)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Nutrisi Hari Ini</h3>
+          <div class="chart-placeholder">Diagram Nutrisi Kalori / Protein / Karbo / Lemak</div>
+        </div>
+        <div class="card">
+          <h3>Menu Populer Hari Ini</h3>
+          <ul>
+            <li>🍜 Nasi Gudeg Spesial - <span class="badge green">Rp 15.000</span></li>
+            <li>🥗 Salad Buah Segar - <span class="badge green">Rp 8.000</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="admin" class="page">
+        <h1>👨‍💼 Dashboard Admin</h1>
+        <div class="card">
+          <h3>Statistik Singkat</h3>
+          <ul>
+            <li>📦 Pesanan Hari Ini: <strong>156</strong></li>
+            <li>💰 Pendapatan Bulan Ini: <strong>Rp 2.400.000</strong></li>
+            <li>👍 Tingkat Kepuasan: <strong>89%</strong></li>
+            <li>🍱 Menu Aktif: <strong>12</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Aksi Cepat</h3>
+          <ul>
+            <li>📋 Kelola Menu Harian</li>
+            <li>📦 Cek Stok Bahan</li>
+            <li>📈 Lihat Laporan</li>
+            <li>⚙️ Pengaturan Sistem</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Notifikasi Penting</h3>
+          <ul>
+            <li><span class="badge yellow">Stok Rendah</span> Beras tinggal 15kg</li>
+            <li><span class="badge green">Menu Populer</span> Nasi Gudeg terjual 45 porsi</li>
+            <li><span class="badge red">Alergen Alert</span> 3 pesanan dengan alergi kacang</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="kitchen" class="page">
+        <h1>👨‍🍳 Tampilan Dapur</h1>
+        <div class="card">
+          <h3>Pesanan Aktif</h3>
+          <ul>
+            <li>#001 - Andi Saputra - 2x Nasi Gudeg, 1x Es Teh <span class="badge red">URGENT</span></li>
+            <li>#002 - Sari Dewi - 1x Salad Buah, 1x Jus Jeruk</li>
+            <li>#003 - Budi Santoso - 1x Ayam Geprek, 1x Teh Tawar <span class="badge green">READY</span></li>
+            <li>#004 - Kelas XI IPA 1 - 15x Nasi Kotak + Air Mineral</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="menu" class="page">
+        <h1>📋 Manajemen Menu</h1>
+        <div class="card">
+          <h3>Tambah Menu Baru</h3>
+          <p>Formulir input: Nama Menu, Harga, Deskripsi, Kategori, Foto</p>
+        </div>
+        <div class="card">
+          <h3>Daftar Menu Aktif</h3>
+          <ul>
+            <li>🍛 Nasi Gudeg - <span class="badge green">Rp 15.000</span></li>
+            <li>🥗 Salad Buah - <span class="badge green">Rp 8.000</span></li>
+            <li>🍗 Ayam Geprek Keju - <span class="badge green">Rp 14.000</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="analytics" class="page">
+        <h1>📊 Analitik</h1>
+        <div class="card">
+          <h3>Ringkasan</h3>
+          <div class="chart-placeholder">[ Grafik Jumlah Pesanan / Penjualan / Nutrisi ]</div>
+        </div>
+      </section>
+
+      <section id="payment" class="page">
+        <h1>💳 Pembayaran</h1>
+        <div class="card">
+          <h3>Keranjang</h3>
+          <ul>
+            <li>1x Nasi Gudeg - Rp 15.000</li>
+            <li>1x Es Teh - Rp 3.000</li>
+          </ul>
+          <p><strong>Total: Rp 18.000</strong></p>
+        </div>
+        <div class="card">
+          <h3>Metode Pembayaran</h3>
+          <ul class="payment-methods">
+            <li>QRIS</li>
+            <li>E-Wallet Siswa</li>
+            <li>Tunai</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function switchPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      [...document.querySelectorAll('.nav-link')].find(link => link.textContent.toLowerCase().includes(id)).classList.add('active');
+    }
+  </script>
+</body>
+</html>
